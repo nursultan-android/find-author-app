@@ -17,7 +17,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import kz.insomnia.find.author.ui.theme.FindAuthorTheme
+import kz.insomnia.find.author.ui.theme.Pink80
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,26 +30,34 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                    Greeting("Nursultan")
                 }
             }
         }
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    FindAuthorTheme {
+        Greeting("Nurs")
+    }
+}
+
 @Composable
 fun Greeting(name: String) {
     var visible by remember {
-        mutableStateOf(true)
+        mutableStateOf(false)
     }
     Column (modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         AnimatedVisibility(visible = visible) {
-            Text(text = "Hello, $name!")
+            Text(text = "$name, clicked me!", color = Pink80)
         }
         Button(onClick = { visible = !visible }) {
-            Text("Click Me")
+            Text("$name, Click Me", color = Color(0xFFffffff))
         }
     }
 }
