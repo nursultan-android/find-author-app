@@ -3,16 +3,24 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+def VERSION_CODE = 1
+def VERSION_NAME = "1.0.0"
+
+
+def MIN_SDK = 28
+def COMPILE_SDK = 32
+def APPLICATION_ID = "kz.insomnia.find.author"
+
 android {
     namespace 'kz.insomnia.find.author'
-    compileSdk 32
+    compileSdk COMPILE_SDK
 
     defaultConfig {
-        applicationId "kz.insomnia.find.author"
-        minSdk 28
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId APPLICATION_ID
+        minSdk MIN_SDK
+        targetSdk COMPILE_SDK
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -24,6 +32,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
         }
     }
     compileOptions {
